@@ -1,0 +1,50 @@
+syntax on
+
+color solarized8_dark
+
+set wrap
+set nonumber
+set nolist
+set nospell
+set expandtab
+
+set mouse=c
+
+let g:indent_guides_enable_on_vim_startup = 0
+
+" go config
+let g:go_fmt_fail_silently = 1
+let g:go_addtags_transform = "camelcase"
+
+" c++ config
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+" python config
+let g:python_highlight_all = 1
+let g:pymode_python = 'python3'
+
+" disable code folding
+"
+set foldlevel=9
+
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+
+let g:indent_guides_enable_on_vim_startup = 0
+let g:AutoPairs = {}
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsMoveCharacter = ""
+
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 0
+
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 0
+
+" Set minimum syntax keyword length.
+let g:pymode_options_max_line_length = 240
+autocmd FileType python set colorcolumn=240
+let g:pymode_lint_ignore = "E501,W"
