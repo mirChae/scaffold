@@ -4,7 +4,8 @@
 # 01. Installation
 ```
 git clone https://github.com/mirChae/scaffold.git ~/.scaffold
-~/.scaffold/install.sh
+cd ~/.scaffold
+./install.sh
 ```
 
 # 02. Include packages
