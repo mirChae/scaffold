@@ -1,6 +1,6 @@
 syntax on
 
-color solarized8_dark
+color gruvbox
 
 set wrap
 set nonumber
