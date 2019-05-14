@@ -28,7 +28,7 @@ install_tmux_conf() {
 install_zsh() {
     local has_zsh=$(which zsh)
 
-    if [ "${has_zsh}" = "zsh not found" ];
+    if [ "${has_zsh}" = "" ];
     then
         echo 'Installing zsh...'
         sudo apt-get -y install zsh
@@ -93,7 +93,7 @@ install_go_env() {
 install_python() {
     local has_python3=$(which python3)
 
-    if [ "${python3}" = "python3 not found" ];
+    if [ "${python3}" = "" ];
     then 
         echo "Installing python3..."
         sudo apt-get install -y python3.6
@@ -103,7 +103,7 @@ install_python() {
 install_pip() {
     local has_pip3=$(which pip3)
 
-    if [ "${has_pip3}" = "pip3 not found" ];
+    if [ "${has_pip3}" = "" ];
     then
         echo 'Installing python3-pip'
         sudo apt-get install -y python3-pip
@@ -113,14 +113,14 @@ install_pip() {
 
 install_pipenv() {
     local has_venv=$(which virtualenv)
-    if [ "${has_venv}" = "virtualenv not found" ];
+    if [ "${has_venv}" = "" ];
     then
         echo "Installing virtualenv..."
         pip3 install --user virtualenv
     fi
 
     local has_pipenv=$(which pipenv)
-    if [ "${has_pipenv}" = "pipenv not found" ];
+    if [ "${has_pipenv}" = "" ];
     then
         echo "Installing pipenv..."
         pip3 install --user --upgrade pipenv
@@ -130,10 +130,30 @@ install_pipenv() {
 install_tig() {
     local has_tig=$(which tig)
 
-    if [ "${has_tig}" = "tig not found" ];
+    if [ "${has_tig}" = "" ];
     then
         echo 'Installing tig...'
         sudo apt-get install tig
+    fi
+}
+
+install_docker_env() {
+    local has_docker=$(which docker)
+
+    if [ "${has_docker}" = "" ];
+    then
+        sudo apt-get update
+        sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository \
+            "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+            $(lsb_release -cs) \
+            stable"
+
+        sudo apt-get update
+
+        sudo apt-get install -y docker-ce docker-ce-cli containerd.io
     fi
 }
 
@@ -154,6 +174,7 @@ install_python
 install_pip
 install_pipenv
 install_tig
+install_docker_env
 set_git_default_config
 
 echo "Install complete."
