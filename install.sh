@@ -1,4 +1,5 @@
-TMP_DIR='/tmp'
+TMP_DIR=/tmp
+ZSH=$HOME/.oh-my-zsh
 
 install_spf13() {
     if [ ! -d ~/.spf13-vim-3 ];
@@ -55,7 +56,7 @@ install_oh_my_zsh() {
 }
 
 install_fzf() {
-    if [ ! -f ~/.fzf.zsh ];
+    if [ ! -f $HOME/.fzf.zsh ];
     then 
         git clone --depth 1 https://github.com/junegunn/fzf.git $TMP_DIR/.fzf
         $TMP_DIR/.fzf/install
@@ -101,12 +102,12 @@ install_python() {
 }
 
 install_pip() {
-    local has_pip3=$(which pip3)
+    local has_pip=$(which pip)
 
-    if [ "${has_pip3}" = "" ];
+    if [ "${has_pip}" = "" ];
     then
-        echo 'Installing python3-pip'
-        sudo apt-get install -y python3-pip
+        echo 'Installing python-pip'
+        sudo apt-get install -y python-pip
         echo 'export PATH=$PATH:~/.local/bin' >> ~/.zshrc
     fi
 }
@@ -116,14 +117,14 @@ install_pipenv() {
     if [ "${has_venv}" = "" ];
     then
         echo "Installing virtualenv..."
-        pip3 install --user virtualenv
+        pip install virtualenv
     fi
 
     local has_pipenv=$(which pipenv)
     if [ "${has_pipenv}" = "" ];
     then
         echo "Installing pipenv..."
-        pip3 install --user --upgrade pipenv
+        pip install --upgrade pipenv
     fi
 }
 
