@@ -94,7 +94,7 @@ install_go_env() {
 install_python() {
     local has_python3=$(which python3)
 
-    if [ "${python3}" = "" ];
+    if [ "${has_python3}" = "" ];
     then 
         echo "Installing python3..."
         sudo apt-get install -y python3.6
